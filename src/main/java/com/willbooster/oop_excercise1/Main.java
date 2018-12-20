@@ -4,6 +4,9 @@ import com.willbooster.oop_excercise1.ml.XorByNeuralNetwork;
 import org.encog.Encog;
 import org.encog.ml.data.basic.BasicMLDataSet;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Main {
     /**
      * XOR演算子を学習するための入力データ
