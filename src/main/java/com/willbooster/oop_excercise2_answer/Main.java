@@ -1,6 +1,6 @@
-package com.willbooster.oop_excercise1;
+package com.willbooster.oop_excercise2_answer;
 
-import com.willbooster.oop_excercise1.ml.XorByNeuralNetwork;
+import com.willbooster.oop_excercise2_answer.ml.XorTrainerByNeuralNetwork;
 import org.encog.Encog;
 import org.encog.ml.data.basic.BasicMLDataSet;
 
@@ -28,9 +28,8 @@ public class Main {
     public static void main(final String args[]) {
         var trainingSet = new BasicMLDataSet(XOR_INPUT, XOR_IDEAL);
 
-        var xorByNeuralNetwork = new XorByNeuralNetwork();
-        xorByNeuralNetwork.train(trainingSet);
-        XorTester.test(trainingSet, xorByNeuralNetwork);
+        XorTrainerByNeuralNetwork xorTrainerByNeuralNetwork = new XorTrainerByNeuralNetwork();
+        XorTester.test(trainingSet, xorTrainerByNeuralNetwork.train(trainingSet));
 
         Encog.getInstance().shutdown();
     }

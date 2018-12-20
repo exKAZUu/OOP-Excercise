@@ -1,8 +1,13 @@
-package com.willbooster.oop_excercise1;
+package com.willbooster.oop_excercise3_answer;
 
-import com.willbooster.oop_excercise1.ml.XorByNeuralNetwork;
+import com.willbooster.oop_excercise3_answer.ml.XorTrainer;
+import com.willbooster.oop_excercise3_answer.ml.XorTrainerByNeuralNetwork;
+import com.willbooster.oop_excercise3_answer.ml.XorTrainerBySVM;
 import org.encog.Encog;
 import org.encog.ml.data.basic.BasicMLDataSet;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Main {
     /**
@@ -28,9 +33,13 @@ public class Main {
     public static void main(final String args[]) {
         var trainingSet = new BasicMLDataSet(XOR_INPUT, XOR_IDEAL);
 
-        var xorByNeuralNetwork = new XorByNeuralNetwork();
-        xorByNeuralNetwork.train(trainingSet);
-        XorTester.test(trainingSet, xorByNeuralNetwork);
+        var trainers = new XorTrainer[]{
+                new XorTrainerByNeuralNetwork(),
+                new XorTrainerBySVM(),
+        };
+
+        var predictors = Arrays.stream(trainers).map(trainer -> trainer.train(trainingSet)).collect(Collectors.toList());
+        XorTester.test(trainingSet, predictors);
 
         Encog.getInstance().shutdown();
     }

@@ -1,47 +1,45 @@
 package com.willbooster.oop_excercise4;
 
+import com.willbooster.oop_excercise4.ml.XorTrainer;
+import com.willbooster.oop_excercise4.ml.XorTrainerByNeuralNetwork;
+import com.willbooster.oop_excercise4.ml.XorTrainerBySVM;
 import org.encog.Encog;
 import org.encog.ml.data.basic.BasicMLDataSet;
-import org.encog.ml.svm.SVM;
-import org.encog.ml.svm.training.SVMSearchTrain;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Main {
+    /**
+     * XOR演算子を学習するための入力データ
+     */
+    public static double XOR_INPUT[][] = {
+            {0.0, 0.0},
+            {1.0, 0.0},
+            {0.0, 1.0},
+            {1.0, 1.0}
+    };
 
     /**
-     * The input necessary for XOR.
+     * 各入力データに対する教師データ（正解データ）
      */
-    public static double XOR_INPUT[][] = {{0.0, 0.0}, {1.0, 0.0},
-            {0.0, 1.0}, {1.0, 1.0}};
+    public static double XOR_IDEAL[][] = {
+            {0.0},
+            {1.0},
+            {1.0},
+            {0.0}
+    };
 
-    /**
-     * The ideal data necessary for XOR.
-     */
-    public static double XOR_IDEAL[][] = {{0.0}, {1.0}, {1.0}, {0.0}};
-
-    /**
-     * The main method.
-     *
-     * @param args No arguments are used.
-     */
     public static void main(final String args[]) {
         var trainingSet = new BasicMLDataSet(XOR_INPUT, XOR_IDEAL);
 
-        var trainers = new Trainer[]{
-                new NeuralNetworkTrainer(),
-                new SvmTrainer(),
+        var trainers = new XorTrainer[]{
+                new XorTrainerByNeuralNetwork(),
+                new XorTrainerBySVM(),
         };
 
         var predictors = Arrays.stream(trainers).map(trainer -> trainer.train(trainingSet)).collect(Collectors.toList());
-        predictors.forEach(predictor -> {
-            trainingSet.forEach(pair -> {
-                var output = predictor.predict(pair.getInput());
-                System.out.println(pair.getInput().getData(0) + "," + pair.getInput().getData(1)
-                        + ", actual=" + output.getData(0) + ",ideal=" + pair.getIdeal().getData(0));
-            });
-        });
+        XorTester.test(trainingSet, predictors);
 
         Encog.getInstance().shutdown();
     }

@@ -67,7 +67,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>com.willbooster.oop_excercise1.Main</mainClass>
+          <mainClass>com.willbooster.oop_excercise_basic.NeuralNetworkMain</mainClass>
         </configuration>
       </plugin>
 
