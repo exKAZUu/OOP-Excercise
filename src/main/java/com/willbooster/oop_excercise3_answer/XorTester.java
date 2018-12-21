@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XorTester {
-    public static void test(MLDataSet trainingSet, List<XorPredictor> originalPredicors) {
-        ArrayList<XorPredictor> predictors = new ArrayList<>(originalPredicors);
+    public static void test(MLDataSet trainingSet, List<XorPredictor> originalPredictors) {
+        ArrayList<XorPredictor> predictors = new ArrayList<>(originalPredictors);
         predictors.add(new XorPredictorByReturningConstant());
 
         for (var predictor : predictors) {
