@@ -2,14 +2,14 @@ package com.willbooster.oop_excercise3;
 
 import com.willbooster.oop_excercise3.ml.XorPredictor;
 import com.willbooster.oop_excercise3.ml.XorPredictorByNeuralNetwork;
-import com.willbooster.oop_excercise3.ml.XorPredictorByReturningConstant;
+import com.willbooster.oop_excercise3.ml.XorPredictorByRandom;
 import org.encog.ml.data.MLDataSet;
 
 public class XorTester {
     public static void test(MLDataSet trainingSet, XorPredictorByNeuralNetwork xorPredictorByNeuralNetwork) {
         var predictors = new XorPredictor[]{
                 xorPredictorByNeuralNetwork,
-                new XorPredictorByReturningConstant(),
+                new XorPredictorByRandom(),
         };
 
         for (var predictor : predictors) {

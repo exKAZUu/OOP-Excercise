@@ -1,7 +1,7 @@
 package com.willbooster.oop_excercise1;
 
 import com.willbooster.oop_excercise1.ml.XorByNeuralNetwork;
-import com.willbooster.oop_excercise1.ml.XorByReturningConstant;
+import com.willbooster.oop_excercise1.ml.XorByRandom;
 import com.willbooster.oop_excercise1.ml.XorOperator;
 import org.encog.ml.data.MLDataSet;
 
@@ -9,7 +9,7 @@ public class XorTester {
     public static void test(MLDataSet trainingSet, XorByNeuralNetwork xorByNeuralNetwork) {
         var xors = new XorOperator[]{
                 xorByNeuralNetwork,
-                new XorByReturningConstant(),
+                new XorByRandom(),
         };
 
         for (var xor : xors) {

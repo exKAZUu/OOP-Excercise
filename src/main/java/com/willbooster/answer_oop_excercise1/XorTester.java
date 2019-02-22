@@ -1,16 +1,16 @@
-package com.willbooster.oop_excercise4;
+package com.willbooster.answer_oop_excercise1;
 
-import com.willbooster.oop_excercise4.ml.XorPredictor;
-import com.willbooster.oop_excercise4.ml.XorPredictorByRandom;
+import com.willbooster.answer_oop_excercise1.ml.XorByNeuralNetwork;
+import com.willbooster.answer_oop_excercise1.ml.XorPredictor;
+import com.willbooster.answer_oop_excercise1.ml.XorPredictorByRandom;
 import org.encog.ml.data.MLDataSet;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class XorTester {
-    public static void test(MLDataSet trainingSet, List<XorPredictor> originalPredicors) {
-        ArrayList<XorPredictor> predictors = new ArrayList<>(originalPredicors);
-        predictors.add(new XorPredictorByRandom());
+    public static void test(MLDataSet trainingSet, XorByNeuralNetwork xorByNeuralNetwork) {
+        var predictors = new XorPredictor[]{
+                xorByNeuralNetwork,
+                new XorPredictorByRandom(),
+        };
 
         for (var predictor : predictors) {
             var allCount = 0;

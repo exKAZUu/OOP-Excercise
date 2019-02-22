@@ -1,7 +1,6 @@
-package com.willbooster.oop_excercise4;
+package com.willbooster.answer_oop_excercise6;
 
-import com.willbooster.oop_excercise4.ml.XorPredictor;
-import com.willbooster.oop_excercise4.ml.XorPredictorByRandom;
+import com.willbooster.answer_oop_excercise6.ml.XorPredictorByRandom;
 import org.encog.ml.data.MLDataSet;
 
 import java.util.ArrayList;
